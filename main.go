@@ -3,6 +3,7 @@ package main
 import (
 	"gin-blog/controllers"
 	"gin-blog/database"
+	"gin-blog/jwt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +14,7 @@ func main() {
 	router := gin.Default() //this will create the gin
 	router.Use(database.InjectMongoDB)
 
+	router.Use(jwt.JWT())
 	router.GET("/health",func(c *gin.Context) {
 		c.JSON(200,gin.H{
 			"service": "up",
@@ -28,6 +30,8 @@ func main() {
 		}
 
 	}
+
+
 	router.Run() // listen and serve on 0.0.0.0:8080
 
 
