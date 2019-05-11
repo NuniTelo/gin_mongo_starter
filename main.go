@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gin-blog/controllers"
 	"gin-blog/database"
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +24,7 @@ func main() {
 	{
 		posts := api.Group("/posts")
 		{
-			posts.GET("/all")
+			posts.GET("/all",controllers.SavePost)
 		}
 
 	}
